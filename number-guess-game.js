@@ -7,7 +7,7 @@ playButton.addEventListener("click", play)
 
 function pickRandomNumber() {
     autoNumber = Math.floor(Math.random()*100)+1 ; // Math.random: 0~1 사이의 값을 Pick (1은 포함 x.). // Math.floor: 소숫점을 버려준다.
-    console.log("정답은", autoNumber)
+    console.log("정답", autoNumber)
 }
 
 function play() {
