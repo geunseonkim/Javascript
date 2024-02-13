@@ -122,6 +122,7 @@ body {
 @media (max-width: 600px) {
     .top-part-hide {
         display: block;
+        color: rgb(172, 31, 31);
     }
 
     .top-part-hide-later {
