@@ -1,0 +1,42 @@
+body {
+    margin: 0px;
+    background-image: url("images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(211, 211, 211, 0.716);
+    min-height: 100vh; /*view height 내가 보는 화면의 높이만큼.*/
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.task-area {
+    border: 3px solid lightgray;
+}
+
+.task-tabs {
+    display: flex;
+    border-bottom: 2px solid lightgray;
+    position: relative;
+}
+
+.task-tabs div {
+    padding: 1em; /*1em: equal to the current font size*/
+}
+
+#under-line {
+    height: 4px;
+    background-color: rgb(168, 75, 75);
+    position: absolute;
+    width: 70px;
+    left: 0px;
+    top: 54px;
+    padding: 0px; /*div 태그에 기본 padding 값이 있어서 우선 0px으로 맞춰둔다.*/
+} /*지금은 static 하게 있지만 javascript를 통해 움직여줄 것. 그래서 자주 사용하기 때문에 class로 안 하고 id로 만들어 준 것.*/
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em; /*edit*/
+}
