@@ -119,7 +119,15 @@ body {
     display: none;
 }
 
-@media (max-width: 600px) {
+.second-line-later {
+    display: none;
+}
+
+@media (max-width: 750px) {
+    .top-part {
+        border-bottom: 3px solid rgb(172, 31, 31);
+    }
+
     .top-part-hide {
         display: block;
         color: rgb(172, 31, 31);
@@ -146,6 +154,10 @@ body {
         width: 40%;
    }
 
+   .footer {
+    border-top: 3px solid rgb(172, 31, 31);
+   }
+
     .footer-container{
         padding: 30px
     }
@@ -162,5 +174,5 @@ body {
     .first-line-hide-later {
         display: none;
     }
-    
+
 }
