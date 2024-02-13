@@ -64,6 +64,12 @@ function reset() {
     // 새로운 번호가 생성.
     pickRandomNumber();
     resultArea.textContent = "The results appear here!";
+
+    gameOver = false;
+    playButton.disabled = false;
+    chances = 5;
+    chanceArea.textContent = `number of chances: ${chances}`;
+    history = [];
 }
 
 pickRandomNumber();
