@@ -13,7 +13,6 @@ body {
 .top-part {
     background-color: rgba(55, 108, 161, 0.815);
     border-bottom: 3px solid rgb(211, 211, 211);
-
     padding: 14px;
     color: white;
     font-family: "Protest Riot", sans-serif;
@@ -28,7 +27,6 @@ body {
 
 .first-part-hide {
     display: none;
-    
 }
 
 .first-part {
@@ -52,7 +50,6 @@ body {
 .third-part {
     /*border: 3px solid white;*/
     text-align: center;
-
     margin-top: 20px;
     font-size: 20px;
 }
@@ -62,7 +59,6 @@ body {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 100;
     font-style: normal;
-
     padding-top: 5px;
 }
 
@@ -75,12 +71,10 @@ body {
 
 .third-part input {
     margin-top: 12px;
-
     font-family: "Protest Riot", sans-serif;
     font-weight: 100;
     font-style: normal;
     font-size: 14px;
-
     padding-left: 10px;
     width: 5%;
 }
@@ -91,7 +85,6 @@ body {
     position: absolute;
     bottom: 0px;
     width: 100%;
-
     color: rgb(0, 0, 0);
     font-family: "Protest Riot", sans-serif;
     font-weight: 100;
@@ -102,7 +95,6 @@ body {
 .footer-container{
     display: flex;
     justify-content: space-between;
-
     padding: 20px
 }
 
@@ -156,8 +148,8 @@ body {
    }
 
    .footer {
-    border-top: 3px solid white;
-    background-color: rgba(242, 184, 184, 0.788);
+        border-top: 3px solid white;
+        background-color: rgba(242, 184, 184, 0.788);
    }
 
     .footer-container{
@@ -176,5 +168,4 @@ body {
     .first-line-hide-later {
         display: none;
     }
-
 }
