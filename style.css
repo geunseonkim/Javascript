@@ -119,18 +119,19 @@ body {
     display: none;
 }
 
-.second-line-later {
-    display: none;
-}
-
 @media (max-width: 750px) {
+    body {
+        background-color: rgb(172, 31, 31);
+    }
+    
     .top-part {
-        border-bottom: 3px solid rgb(172, 31, 31);
+        border-bottom: 3px solid white;
+        background-color: rgba(161, 55, 55, 0.815);
     }
 
     .top-part-hide {
         display: block;
-        color: rgb(172, 31, 31);
+        color: white;
     }
 
     .top-part-hide-later {
@@ -143,7 +144,7 @@ body {
 
     .first-part-deco {
         font-size: 30px;
-        color: rgb(172, 31, 31);
+        color: white;
     }
 
     .first-part-hide-later {
@@ -155,7 +156,8 @@ body {
    }
 
    .footer {
-    border-top: 3px solid rgb(172, 31, 31);
+    border-top: 3px solid white;
+    background-color: rgba(242, 184, 184, 0.788);
    }
 
     .footer-container{
@@ -168,7 +170,7 @@ body {
 
     .first-line-hide {
         display: block;
-        color: rgb(172, 31, 31);
+        color: white;
     }
 
     .first-line-hide-later {
