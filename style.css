@@ -1,0 +1,165 @@
+body {
+    background-color:steelblue;
+    margin: 0px;
+}
+
+.protest-guerrilla-regular {
+    color: white;
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.top-part {
+    background-color: rgba(55, 108, 161, 0.815);
+    border-bottom: 3px solid rgb(211, 211, 211);
+
+    padding: 14px;
+    color: white;
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15px;
+}
+
+.top-part-hide {
+    display: none;
+}
+
+.first-part-hide {
+    display: none;
+    
+}
+
+.first-part {
+    /*border: 3px solid white;*/
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: 40px;
+}
+
+.second-part {
+    /*border: 3px solid white;*/
+    display: flex;
+    justify-content: center;
+}
+
+.img-deco {
+    width: 20%;
+}
+
+.third-part {
+    /*border: 3px solid white;*/
+    text-align: center;
+
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.third-part div {
+    color: white;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+
+    padding-top: 5px;
+}
+
+.third-part button {
+    margin-top: 7px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    color: rgb(24, 73, 121);
+}
+
+.third-part input {
+    margin-top: 12px;
+
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 14px;
+
+    padding-left: 10px;
+    width: 5%;
+}
+
+.footer {
+    background-color: rgba(184, 220, 242, 0.788);
+    border-top: 3px solid white;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+
+    color: rgb(0, 0, 0);
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 15px;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px
+}
+
+.first-line {
+    color: rgb(47, 49, 52);
+    padding-left: 10px;
+}
+
+.second-line {
+    padding-right: 10px;
+}
+
+.first-line-hide {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .top-part-hide {
+        display: block;
+    }
+
+    .top-part-hide-later {
+        display: none;
+    }
+
+    .first-part-hide {
+        display: block;
+    }
+
+    .first-part-deco {
+        font-size: 30px;
+        color: rgb(172, 31, 31);
+    }
+
+    .first-part-hide-later {
+        display: none;
+    }
+
+    .img-deco {
+        width: 40%;
+   }
+
+    .footer-container{
+        padding: 30px
+    }
+
+    .third-part input {
+        width: 10%;
+    }
+
+    .first-line-hide {
+        display: block;
+        color: rgb(172, 31, 31);
+    }
+
+    .first-line-hide-later {
+        display: none;
+    }
+    
+}

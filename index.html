@@ -4,16 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400..700&family=Protest+Guerrilla&family=Protest+Riot&display=swap");
+    </style>
+    <script
+      src="https://kit.fontawesome.com/947d661b4e.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>guess number game.</h1>
-    <div id="result-area">result.</div>
-    <div id="chance-area">number of chances: 5</div>
-    <input type="number" id="user-input" />
-    <button id="play-button">Go!</button>
+    <div class="top-part top-part-hide-later">CodeNames: Pumpkin</div>
+    <div class="top-part top-part-hide">CodeNames: Pumpkiller</div>
 
-    <button id="reset-button">Reset!</button>
+    <div class="first-part-hide-later">
+      <h1 class="protest-guerrilla-regular first-part">guess number game.</h1>
+    </div>
+    <div class="first-part-hide">
+      <h1 class="protest-guerrilla-regular first-part first-part-deco">
+        death game.
+      </h1>
+    </div>
+
+    <div>
+      <div class="second-part">
+        <img src="./undraw_Halloween.jpg" class="img-deco" />
+      </div>
+      <div class="third-part">
+        <div id="result-area">result.</div>
+        <div id="chance-area">number of chances: 5</div>
+        <input type="number" id="user-input" />
+        <button id="play-button">Go!</button>
+        <button id="reset-button">Reset!</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-container">
+        <div class="first-line first-line-hide-later">
+          If you don't answer correctly, you will have to eat pumpkin for the
+          rest of your life.
+        </div>
+        <div class="first-line-hide">JUST GO FOR IT...</div>
+        <div class="second-line">
+          <span>
+            <i class="fa-solid fa-share-from-square"></i>
+          </span>
+          <span class="second-line">death game.</span>
+        </div>
+      </div>
+    </div>
 
     <script src="main.js"></script>
   </body>
