@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background-image: url("images/background.jpeg");
+    background-image: url("assets/background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -39,4 +39,10 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 1em; /*edit*/
+}
+
+/*----*/
+
+.task-done {
+    text-decoration: line-through;
 }
