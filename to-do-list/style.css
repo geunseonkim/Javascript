@@ -3,22 +3,89 @@ body {
     background-image: url("assets/background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: "Rubik 80s Fade", system-ui;
+    font-weight: 100;
+    font-style: normal;
 }
 
+h1 {
+    position: absolute;
+    top: 7vh;
+    left: 10vh;
+    color: white;
+    font-family: "Rubik 80s Fade", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.protest-riot-regular {
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.rubik-80s fade-regular {
+    font-family: "Rubik 80s Fade", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+  
 .container {
-    background-color: rgba(211, 211, 211, 0.716);
+    margin-top: 17vh;
+    background-color: rgba(255, 255, 255, 0.577);
     min-height: 100vh; /*view height 내가 보는 화면의 높이만큼.*/
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /*box-shadow: rgba(255, 254, 254, 0.601) 0px 2px 8px 0px;*/
+    /*width: 70vh;
+    height: 80vh;
+    border-radius: 24px;*/
+    border-radius: 10px;
+}
+
+button {
+    border-radius: 10%;
+    border: none;
+    color: rgb(6, 3, 40);
+}
+
+.button-deco {
+    background-color: rgba(255, 255, 255, 0.577);
+}
+
+.input-area {
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+input {
+    padding-left: 10px;
+    width: 25%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.379);
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.protest-riot-regular {
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .task-area {
-    border: 3px solid lightgray;
+    border: 2.5px solid rgba(222, 220, 220, 0.628);
+    border-radius: 0%;
+    margin: 15px;
+    border-radius: 10px;
 }
 
 .task-tabs {
     display: flex;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2.5px solid rgb(255, 255, 255);
     position: relative;
+    background-color: rgba(255, 255, 255, 0.412);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
 }
 
 .task-tabs div {
@@ -26,23 +93,66 @@ body {
 }
 
 #under-line {
-    height: 4px;
+    height: 5px;
     background-color: rgb(168, 75, 75);
     position: absolute;
     width: 70px;
     left: 0px;
-    top: 54px;
+    top: 55px;
     padding: 0px; /*div 태그에 기본 padding 값이 있어서 우선 0px으로 맞춰둔다.*/
-} /*지금은 static 하게 있지만 javascript를 통해 움직여줄 것. 그래서 자주 사용하기 때문에 class로 안 하고 id로 만들어 준 것.*/
+    /*지금은 static 하게 있지만 javascript를 통해 움직여줄 것. 그래서 자주 사용하기 때문에 class로 안 하고 id로 만들어 준 것.*/
+    transition: 0.3s;
+}
+
+.task-menu-deco {
+    color: rgb(146, 50, 50);
+    font-size: 1em;
+}
 
 .task {
     display: flex;
     justify-content: space-between;
     padding: 1em; /*edit*/
+    color: rgb(110, 14, 14);
+
+    font-family: "Protest Riot", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
 }
 
 /*----*/
 
 .task-done {
     text-decoration: line-through;
+    text-decoration-color: rgb(111, 93, 213);
+    text-decoration-thickness: 3px;
+    text-decoration-style: wavy;
+}
+
+/*----*/
+
+.task-tabs div {
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 750px) {
+    .container {
+        width: 50vh;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+    
+    input {
+        font-size: 1em;
+    }
+
+    .task {
+        font-size: 0.9em;
+    }
+    
 }
