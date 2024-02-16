@@ -131,11 +131,9 @@ input {
     cursor: pointer;
 }
 
-
-
-@media (max-width: 750px) {
+@media (max-width: 600px) {
     .container {
-        width: 50vh;
+        width: 70vh;
     }
 
     h1 {
