@@ -1,6 +1,5 @@
 let taskInput = document.getElementById("task-input");
 //console.log(taskInput);
-
 taskInput.addEventListener("keypress", function (event) {
   if(event.key === "Enter"){
     event.preventDefault();
@@ -10,6 +9,7 @@ taskInput.addEventListener("keypress", function (event) {
     taskInput.value = "";
 } 
 });
+taskInput.addEventListener("focus", function(){taskInput.value = ""});
 
 let addButton = document.getElementById("add-button");
 

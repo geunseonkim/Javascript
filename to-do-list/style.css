@@ -18,17 +18,12 @@ h1 {
     font-style: normal;
 }
 
+/*
 .protest-riot-regular {
     font-family: "Protest Riot", sans-serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.rubik-80s fade-regular {
-    font-family: "Rubik 80s Fade", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
+} */
   
 .container {
     margin-top: 17vh;
@@ -151,8 +146,17 @@ input {
         font-size: 1em;
     }
 
+    .task-menu-deco {
+        font-size: 0.8em;
+    }
+
     .task {
         font-size: 0.9em;
+    }
+
+    #under-line {
+        top: 44px;
+        width: 60px;
     }
     
 }
