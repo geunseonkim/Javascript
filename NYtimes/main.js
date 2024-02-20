@@ -1,4 +1,4 @@
-const API_KEY = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
+const API_KEY = `68c442d8c9a541c0b4bb04244d50aea2`;
 let news = [];
 const getLatestNews = async () => {
     const url = new URL(`https://https://javas-project-jane.netlify.app/nytimes//top-headlines?`);
