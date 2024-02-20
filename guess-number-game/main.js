@@ -7,6 +7,7 @@ let chances = 5;
 let gameOver = false;
 let chanceArea = document.getElementById("chance-area");
 let history = [];
+console.log(history);
 
 playButton.addEventListener("click", play);
 resetButton.addEventListener("click", reset);
@@ -47,7 +48,7 @@ function play() {
     }
 
     history.push(userValue);
-    //console.log(history);
+    console.log(history);
 
     if (chances < 1) {
         gameOver = true;
