@@ -7,7 +7,7 @@ const getLatestNews = async () => {
     const url = new URL(url3);
     console.log("uuu", url)
     const response = await fetch(url); // 비동기.
-    const data = await response.json();
+    const data = await response.text();
     news = data.articles;
     console.log("rrr", response);
     console.log("ddd", news);
