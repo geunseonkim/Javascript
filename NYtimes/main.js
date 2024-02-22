@@ -3,10 +3,14 @@ const url1 = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
 const url2 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
 const url3 = `https://javas-project-jane.netlify.app/top-headlines?country-kr`;
 let newsList = [];
+const menus = document.querySelectorAll(".menus button");
+console.log("mmm", menus);
+menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
+
 const getLatestNews = async () => {
-    const url = new URL(url3);
+    const url = new URL(url1);
     console.log("uuu", url)
-    const response = await fetch(url3); // 비동기.
+    const response = await fetch(url1); // 비동기.
     const data = await response.json();
     newsList = data.articles;
     render();
@@ -15,6 +19,15 @@ const getLatestNews = async () => {
 };
 
 //getLatestNews();
+
+const getNewsByCategory = async (event) => {
+    const category = event.target.textContent.toLowerCase()
+    console.log("category", category);
+    const url = new URL (`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`)
+    const response = await fetch(url)
+    const data = await response.json();
+    console.log("ddd", data);
+}
 
 // 상단 햄버거 메뉴, 검색창 설정.
 function openNav() {
@@ -39,17 +52,27 @@ const openSearchIcon = () => {
 
 const render = () => {
     const newsHTML = newsList.map(
-        (news) => `<div class="row news">
+        (news) =>
+        `<div class="row news">
     <div class="col-lg-4">
-      <img
-        class="news-img-size news-img"
-        src="${news.urlToImage}" || "image-error.jpeg"
-      />
+      <img class="news-img-size"
+      src="${
+        news.urlToImage ||
+        "https://www.feednavigator.com/var/wrbm_gb_food_pharma/storage/images/9/2/8/5/235829-6-eng-GB/Feed-Test-SIC-Feed-20142.jpg"
+}" />
     </div>
     <div class="col-lg-8">
-      <h2>${news.title}</h2>
-      <p>${news.description}</p>
-      <div>${news.source.name} * ${news.publishedAt}</div>
+      <h2 class="headLine">${news.title}</h2>
+      <p>${
+        news.description == null || news.description == ""
+          ? "내용없음"
+          : news.description.length > 200
+          ? news.description.substring(0, 200) + "..."
+          : news.description
+   }</p>
+      <div>${news.source.name || "no source"}  ${moment(
+        news.published_date
+     ).fromNow()} * ${news.publishedAt}</div>
     </div>
   </div>
   `).join(" ");
@@ -58,3 +81,7 @@ const render = () => {
 };
 
 getLatestNews();
+
+// 1. 버튼들에 클릭 이벤트.
+// 2. 카테고리별 뉴스 가져오기.
+// 3. 그 뉴스를 보여주기.
