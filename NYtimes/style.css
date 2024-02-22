@@ -109,3 +109,15 @@
 .headLine {
     font-size: 1.6em;
 }
+
+.button-style {
+    border-radius: 10%;
+    background-color: #222222;
+    border: none;
+    color: white;
+}
+
+#search-input {
+    border-radius: 1%;
+    border: 1px solid rgb(192, 192, 192);
+}

@@ -1,5 +1,5 @@
 const API_KEY = `68c442d8c9a541c0b4bb04244d50aea2`;
-const url1 = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`;
+const url1 = `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`;
 const url2 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
 const url3 = `https://javas-project-jane.netlify.app/top-headlines?country-kr`;
 let newsList = [];
@@ -8,9 +8,9 @@ console.log("mmm", menus);
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 
 const getLatestNews = async () => {
-    const url = new URL(url1);
+    const url = new URL(url3);
     console.log("uuu", url)
-    const response = await fetch(url1); // 비동기.
+    const response = await fetch(url3); // 비동기.
     const data = await response.json();
     newsList = data.articles;
     render();
@@ -23,10 +23,22 @@ const getLatestNews = async () => {
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase()
     console.log("category", category);
-    const url = new URL (`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`)
+    const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`)
     const response = await fetch(url)
     const data = await response.json();
     console.log("ddd", data);
+    newsList = data.articles;
+    render();
+}
+
+const getNewsByKeyword = async () => {
+    const keyword = document.getElementById("search-input").value;
+    console.log("keyword", keyword);
+    const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`)
+
+    const response = await fetch(url)
+    const data = await response.json()
+    console.log("keyword data", data);
     newsList = data.articles;
     render();
 }
