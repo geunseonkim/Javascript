@@ -27,6 +27,8 @@ const getNewsByCategory = async (event) => {
     const response = await fetch(url)
     const data = await response.json();
     console.log("ddd", data);
+    newsList = data.articles;
+    render();
 }
 
 // 상단 햄버거 메뉴, 검색창 설정.
