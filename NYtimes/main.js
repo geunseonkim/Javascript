@@ -4,18 +4,19 @@ const url2 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk
 const url3 = `https://javas-project-jane.netlify.app/top-headlines?country-kr`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");
-console.log("mmm", menus);
+//console.log("mmm", menus);
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 
 const getLatestNews = async () => {
     const url = new URL(url3);
-    console.log("uuu", url)
+    //console.log("uuu", url)
+    
     const response = await fetch(url3); // 비동기.
     const data = await response.json();
     newsList = data.articles;
     render();
-    console.log("rrr", response);
-    console.log("ddd", newsList);
+    //console.log("rrr", response);
+    //console.log("ddd", newsList);
 };
 
 //getLatestNews();
@@ -24,9 +25,10 @@ const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase()
     console.log("category", category);
     const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`)
+    
     const response = await fetch(url)
     const data = await response.json();
-    console.log("ddd", data);
+    //console.log("ddd", data);
     newsList = data.articles;
     render();
 }
@@ -38,7 +40,7 @@ const getNewsByKeyword = async () => {
 
     const response = await fetch(url)
     const data = await response.json()
-    console.log("keyword data", data);
+    //console.log("keyword data", data);
     newsList = data.articles;
     render();
 }
