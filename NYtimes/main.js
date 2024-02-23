@@ -4,69 +4,53 @@ const url2 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk
 const url3 = `https://javas-project-jane.netlify.app/top-headlines?country-kr`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");
-//console.log("mmm", menus);
-menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
+menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
+
+let url = new URL(url3)
+
+const getNews = async() => {
+    try { // 이 파일의 하단 참조!!
+        const response = await fetch(url); // 비동기.
+        //console.log("rrr", response);
+        const data = await response.json();
+        //console.log("ddd", data);
+        if (response.status === 200) {
+            if (data.articles.length === 0) {
+                throw new Error("No result for this search.")
+            }
+            newsList = data.articles;
+            render();
+        } else {
+            throw new Error(data.message);
+            // 오류가 났을 때 console.log(data) 값을 불러오면 Your API key is invalid or incorrect. Check your key ... 라는 message를 볼 수 있다.
+
+            status: "error"
+        }
+
+    } catch(error) {
+        //console.log("error", error.message);
+        errorRender(error.message);
+    }
+}
 
 const getLatestNews = async () => {
-    const url = new URL(url3);
-    //console.log("uuu", url)
-    
-    const response = await fetch(url3); // 비동기.
-    const data = await response.json();
-    newsList = data.articles;
-    render();
-    //console.log("rrr", response);
-    //console.log("ddd", newsList);
+    url = new URL(url);    // url을 전역변수로 바꿨기 때문에 각 함수마다 재정의 해서 쓸 수 있다.
+    getNews();
 };
 
-//getLatestNews();
-
 const getNewsByCategory = async (event) => {
-    const category = event.target.textContent.toLowerCase()
-    console.log("category", category);
+    const category = event.target.textContent.toLowerCase();
     //const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`)
-    const url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&category=${category}`)
-    
-    const response = await fetch(url)
-    const data = await response.json();
-    //console.log("ddd", data);
-    newsList = data.articles;
-    render();
+    url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&category=${category}`)
+    getNews();
 }
 
 const getNewsByKeyword = async () => {
     const keyword = document.getElementById("search-input").value;
-    console.log("keyword", keyword);
     //const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`)
-    const url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&q=${keyword}`)
-
-    const response = await fetch(url)
-    const data = await response.json()
-    //console.log("keyword data", data);
-    newsList = data.articles;
-    render();
+    url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&q=${keyword}`)
+    getNews();
 }
-
-// 상단 햄버거 메뉴, 검색창 설정.
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-}
-  
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-}
-
-const openSearchIcon = () => {
-    let InputArea = document.getElementById("input-area");
-        if (InputArea.style.display === "inline") {
-            InputArea.style.display = "none";
-        } else {
-            InputArea.style.display = "inline";
-        }
-}
-// fin.
 
 const render = () => {
     const newsHTML = newsList.map(
@@ -98,8 +82,69 @@ const render = () => {
   document.getElementById("news-board").innerHTML = newsHTML;
 };
 
+const errorRender = (errorMessage) => {
+    const errorHTML = `<div class="alert alert-primary error" role="alert">
+        ${errorMessage}
+      </div>`;
+      document.getElementById("news-board").innerHTML = errorHTML;
+}
+
 getLatestNews();
 
-// 1. 버튼들에 클릭 이벤트.
-// 2. 카테고리별 뉴스 가져오기.
-// 3. 그 뉴스를 보여주기.
+
+// 상단 햄버거 메뉴, 검색창 설정.
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+const openSearchIcon = () => {
+    let InputArea = document.getElementById("input-area");
+        if (InputArea.style.display === "inline") {
+            InputArea.style.display = "none";
+        } else {
+            InputArea.style.display = "inline";
+        }
+}
+// fin.
+
+
+/* 코알 누나의 접근 방법과 어떻게 다른지 기억하자~!!
+
+1. 함수가 try 안에 들어 있음!
+2. 에러가 난다면 어디에서 나는지 정확히 파악하지 못함. -> response!
+3. 실제로 console.log를 해서 에러 시에 어느 부분이 어떻게 바뀌는지 확인! -> status: 200, 401 etc.
+4. 에러 메세지를 따로 보여주는 render 함수를 만들어야 함!
+    // console.log("error", error.message);
+    errorRender(error.message);
+5. throw new Error("No result for this search.")
+6. throw new Error(data.message);
+
+- wrong way.
+
+<div class="alert alert-primary" role="alert" id="error-alert">
+  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+
+errorAlert = document.getElementById("error-alert");
+
+try {
+    // 코드 입력.
+    const getNewsByKeyword = async () => {
+        const keyword = document.getElementById("search-input").value;
+        //const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`)
+        url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&q=${keyword}`)
+        getNews();
+    }
+
+    if (keyword == false) {
+        errorAlert.value.textContent = "no match for your search";
+    }
+} catch (error) {
+    // 에러 핸들.
+    errorAlert.value.textContent
+}
+*/
