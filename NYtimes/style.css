@@ -141,6 +141,11 @@
     text-align: center;
 }
 
+/**/
+.page-link {
+    color: black;
+}
+
 @media screen and (max-width: 750px) {
     .searchHamburger {display: block;}
     .button-hide {display: none;}
