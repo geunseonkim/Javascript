@@ -3,23 +3,36 @@ const url1 = `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`
 const url2 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
 const url3 = `https://javas-project-jane.netlify.app/top-headlines?country-kr`;
 let newsList = [];
-const menus = document.querySelectorAll(".menus button");
+const menus = document.querySelectorAll("#menu-list button");
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
 
-let url = new URL(url3)
+
+let url = new URL(url1)
+
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
+
 
 const getNews = async() => {
     try { // 이 파일의 하단 참조!!
+        url.searchParams.set("page", page); // => &page=page
+        url.searchParams.set("pageSize", pageSize); // url을 fetch 하기 전에 해야 한다.
+
         const response = await fetch(url); // 비동기.
         //console.log("rrr", response);
+
         const data = await response.json();
-        //console.log("ddd", data);
+        console.log("ddd", data);
         if (response.status === 200) {
             if (data.articles.length === 0) {
                 throw new Error("No result for this search.")
             }
             newsList = data.articles;
+            totalResults = data.totalResults;
             render();
+            paginationRender();
         } else {
             throw new Error(data.message);
             // 오류가 났을 때 console.log(data) 값을 불러오면 Your API key is invalid or incorrect. Check your key ... 라는 message를 볼 수 있다.
@@ -40,14 +53,14 @@ const getLatestNews = async () => {
 
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase();
-    //const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`)
+    //url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`)
     url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&category=${category}`)
     getNews();
 }
 
 const getNewsByKeyword = async () => {
     const keyword = document.getElementById("search-input").value;
-    //const url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`)
+    //url = new URL (`https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`)
     url = new URL (`https://javas-project-jane.netlify.app/top-headlines?country-kr&q=${keyword}`)
     getNews();
 }
@@ -88,9 +101,54 @@ const errorRender = (errorMessage) => {
       </div>`;
       document.getElementById("news-board").innerHTML = errorHTML;
 }
+const paginationRender = () => {
+    // totalResult
+    // page
+    // pageSize
+    // groupSize
+    // totalPages
+    const totalPages = Math.ceil(totalResults / pageSize);
+    // pageGroup
+    const pageGroup = Math.ceil(page / groupSize);
+    // lastPage -> 엣지 케이스를 추가해야 함.
+    // 마지막 페이지 그룹이 그룹 사이즈보다 작으면? lastPage = totalPage.
+    let lastPage = pageGroup * groupSize;
+    // firstPage -> 엣지 케이스를 추가해야 함.
+    if (lastPage > totalPages) {
+        lastPage = totalPages;
+    }
+    const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+    //first~last까지, 그려주는 것, 렌더링을 하면 된다.
 
+let paginationHTML = `<li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link">&lt;</a></li>`;
+for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item ${i === page ? "active" :""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+}
+paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link">&gt;</a></li>`
+    document.querySelector(".pagination").innerHTML = paginationHTML
+
+   /* <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>*/
+}
+
+const moveToPage = (pageNum) => {
+    console.log("moveToPage", pageNum);
+    // pageNum을 가지고 url을 호출해야 함.
+    page = pageNum;
+    getNews();
+}
 getLatestNews();
 
+// 1. 버튼들에 클릭 이벤트 주기.
+// 2. 카테고리 별 뉴스 가져오기.
+// 3. 그 뉴스를 보여주기.
 
 // 상단 햄버거 메뉴, 검색창 설정.
 function openNav() {

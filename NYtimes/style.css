@@ -1,3 +1,7 @@
+.nav-part {
+    display: flex;
+}
+
 .search-font-size {
     font-size: 20px;
     padding: 20px;
@@ -10,6 +14,19 @@
 .searchHamburger {
     display: none;
     padding-left: 20px;
+}
+
+.side-deco {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-deco button {
+    border: none;
+    background-color: #111;
+    color: white;
+    margin: 10px;
+    font-size: 20px;
 }
 
 .sidenav {
@@ -55,11 +72,6 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
     .font-size {display: none;}
-}
-
-@media screen and (max-width: 600px) {
-    .searchIcon {display: none;}
-    .searchHamburger {display: block;}
 }
 
 /**/
@@ -115,6 +127,8 @@
     background-color: #222222;
     border: none;
     color: white;
+    margin-left: 4px;
+    font-size: 15px;
 }
 
 #search-input {
@@ -125,4 +139,16 @@
 /**/
 .error {
     text-align: center;
+}
+
+@media screen and (max-width: 750px) {
+    .searchHamburger {display: block;}
+    .button-hide {display: none;}
+    .search-font-size {
+        padding-top: 18px;
+        padding-left: 15px;
+    }
+    .menus {
+        margin-bottom: 1em;
+    }
 }
