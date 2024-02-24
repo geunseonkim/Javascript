@@ -7,7 +7,7 @@ const menus = document.querySelectorAll("#menu-list button");
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
 
 
-let url = new URL(url1)
+let url = new URL(url3)
 
 let totalResults = 0;
 let page = 1;
