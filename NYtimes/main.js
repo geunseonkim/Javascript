@@ -117,17 +117,36 @@ const paginationRender = () => {
     if (lastPage > totalPages) {
         lastPage = totalPages;
     }
-    const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+    lastPage = pageGroup * 5;
+    if (lastPage > totalPages) { // 마지막 그룹이 5개 이하일 때.
+        lastPage = totalPages;
+    }
+    let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
     //first~last까지, 그려주는 것, 렌더링을 하면 된다.
+    firstPage = lastPage - 4 <= 0 ? 1 : lastPage - 4; // 처음 그룹이 5개 이하일 때.
 
-let paginationHTML = `<li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link">&lt;</a></li>`;
+let paginationHTML = "";
+
+if (firstPage >= 6) {
+    paginationHTML = 
+    `<li class="page-item">
+        <a class="page-link" onclick="moveToPage(${1})"><span aria-hidden="true">&lt;&lt;</span></a></li>
+    <li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link">&lt;</a></li>`;
+}// ${firstPage}라고 하면 ex, 10페이지일 때 6 페이지로만 가고 그 앞으로는 안 가진다.
+
 for (let i = firstPage; i <= lastPage; i++) {
     paginationHTML += `<li class="page-item ${i === page ? "active" :""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
 }
-paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link">&gt;</a></li>`
+
+if (lastPage < totalPages) {
+    paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link">&gt;</a></li>
+    <li class="page-item">
+        <a class="page-link" onclick="moveToPage(${totalPages})"><span aria-hidden="true">&gt;&gt;</span></a></li>`
+}// ${lastPage}라고 하면 ex, 1페이지일 때 5 페이지로만 가고 그 뒤로는 안 가진다.
+
     document.querySelector(".pagination").innerHTML = paginationHTML
 
-   /* <nav aria-label="Page navigation example">
+/*<nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -168,6 +187,7 @@ const openSearchIcon = () => {
         }
 }
 // fin.
+
 
 
 /* 코알 누나의 접근 방법과 어떻게 다른지 기억하자~!!
