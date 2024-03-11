@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>The Window Object</h1>
+    <h2>The prompt() Method</h2>
+
+    <p>Click the button to demonstrate the prompt box.</p>
+
+    <button onclick="myFunction()">Try it</button>
+    <!--onclick은 html 요소에 클릭 이벤트를 설정하는 html 속성.-->
+    <!--이 속성을 사용하면 해당 html 요소를 실행할 때 javas 코드를 지정 가능.-->
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        let person = prompt("Please enter your name", "Harry Potter");
+        if (person != null) {
+          document.getElementById("demo").innerHTML =
+            "Hello " + person + "! How are you today?";
+        }
+      }
+    </script>
+
+    <!--button과 myFunction을 지우면 재밌는 일이 일어난다.-->
+  </body>
+</html>
