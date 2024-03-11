@@ -17,5 +17,3 @@ Studying Javascript, and API with Codingnoona Course
     └── NYtimes                # project 3
 
 ```
-
-# javascript
