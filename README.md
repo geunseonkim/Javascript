@@ -1,4 +1,4 @@
-# Javascript Study
+# Javascript
 
 Studying Javascript, and API with Codingnoona Course
 
